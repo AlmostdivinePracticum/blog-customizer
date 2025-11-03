@@ -1,6 +1,7 @@
 .main {
 	position: relative;
 	min-height: 100vh;
+	background-color: var(--bg-color, #ffffff);
 }
 
 .articleContainer {
@@ -9,11 +10,10 @@
 	--font-color: #000000;
 	--container-width: 948px;
 	--bg-color: #ffffff;
-	max-width: var(--container-width);
 	margin: 0 auto;
 	padding: 20px;
 	color: var(--font-color);
 	font-size: var(--font-size);
-	font-family: var(--font-family);
+	font-family: var(--font-family), serif;
 	background-color: var(--bg-color);
 }

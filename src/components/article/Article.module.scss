@@ -4,13 +4,22 @@
 	justify-content: center;
 	align-items: center;
 	row-gap: 24px;
-	max-width: var(--container-width, auto);
 	margin: 0 auto;
 	padding: 72px 0 144px;
 }
 
+.content {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	width: 100%;
+	max-width: var(--container-width, 948px);
+}
+
 .titleDescription {
 	max-width: 550px;
+	text-align: center;
 }
 
 .image {

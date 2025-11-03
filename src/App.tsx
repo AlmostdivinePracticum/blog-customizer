@@ -12,24 +12,22 @@ export const App = () => {
 		useState<ArticleStateType>(defaultArticleState);
 
 	return (
-		<main className={styles.main}>
+		<main
+			className={styles.main}
+			style={
+				{
+					'--font-family': appliedSettings.fontFamilyOption.value,
+					'--font-size': appliedSettings.fontSizeOption.value,
+					'--font-color': appliedSettings.fontColor.value,
+					'--container-width': appliedSettings.contentWidth.value,
+					'--bg-color': appliedSettings.backgroundColor.value,
+				} as React.CSSProperties
+			}>
 			<ArticleParamsForm
 				appliedSettings={appliedSettings}
 				onApplySettings={setAppliedSettings}
 			/>
-			<div
-				className={styles.articleContainer}
-				style={
-					{
-						'--font-family': appliedSettings.fontFamilyOption.value,
-						'--font-size': appliedSettings.fontSizeOption.value,
-						'--font-color': appliedSettings.fontColor.value,
-						'--container-width': appliedSettings.contentWidth.value,
-						'--bg-color': appliedSettings.backgroundColor.value,
-					} as React.CSSProperties
-				}>
-				<Article />
-			</div>
+			<Article />
 		</main>
 	);
 };

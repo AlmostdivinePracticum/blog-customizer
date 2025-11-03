@@ -1,4 +1,4 @@
-import { useState, useRef, useEffect } from 'react';
+import { useState, useRef } from 'react';
 import clsx from 'clsx';
 import { ArrowButton } from 'src/ui/arrow-button';
 import { Button } from 'src/ui/button';
@@ -15,7 +15,8 @@ import {
 	ArticleStateType,
 	defaultArticleState,
 } from 'src/constants/articleProps';
-import { useOutsideClick } from 'src/hooks/useOutsideClick';
+//import { useOutsideClick } from 'src/hooks/useOutsideClick';
+import { useClose } from 'src/hooks/useClose';
 
 import styles from './ArticleParamsForm.module.scss';
 
@@ -33,13 +34,11 @@ export const ArticleParamsForm = ({
 		useState<ArticleStateType>(appliedSettings);
 	const formRef = useRef<HTMLDivElement>(null);
 
-	useOutsideClick(formRef, () => setIsOpen(false));
-
-	useEffect(() => {
-		if (isOpen) {
-			setCurrentSettings(appliedSettings);
-		}
-	}, [isOpen, appliedSettings]);
+	useClose({
+		isOpen,
+		onClose: () => setIsOpen(false),
+		rootRef: formRef,
+	});
 
 	const handleChange = <K extends keyof ArticleStateType>(
 		key: K,
@@ -62,11 +61,9 @@ export const ArticleParamsForm = ({
 		setCurrentSettings(defaultArticleState);
 	};
 
-	const toggle = () => setIsOpen((prev) => !prev);
-
 	return (
 		<>
-			<ArrowButton isOpen={isOpen} onClick={toggle} />
+			<ArrowButton isOpen={isOpen} onClick={() => setIsOpen((prev) => !prev)} />
 			<aside
 				ref={formRef}
 				className={clsx(styles.container, {
